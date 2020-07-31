@@ -19,13 +19,17 @@ public class XMLServiceExport {
     private static String TEST_XML_STRING =null ;
 
     public ResponseObject convertXML() throws IOException {
-        File file = new File("C:\\DEV\\Objectmethod\\XMLExport\\src\\main\\resources\\xml.xml");
+        File file = new File("C:\\Dev\\Prove\\XMLConvertJSON\\src\\main\\resources\\xml.xml");
         FileInputStream fin = new FileInputStream(file);
         byte[] xmlData = new byte[(int) file.length()];
         fin.read(xmlData);
         fin.close();
+        //PARTENZA
         TEST_XML_STRING = new String(xmlData, "UTF-8");
-        JSONObject ob = XML.toJSONObject(TEST_XML_STRING);
+        String xmlPiccolo="<?xml version=\"1.0\" encoding=\"utf-8\"?><soap:Envelope xmlns:soap=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"><soap:Body><OpenResponse xmlns=\"http://bvdep.com/webservices/\"><OpenResult>CH30IATTHMAJO72</OpenResult></OpenResponse></soap:Body></soap:Envelope>";
+        JSONObject ob = XML.toJSONObject(xmlPiccolo);
+       // TEST XML GRANDE ---> JSONObject ob = XML.toJSONObject(TEST_XML_STRING);
+
         ResponseObject res = toJSon(ob);
         return  res;
 
